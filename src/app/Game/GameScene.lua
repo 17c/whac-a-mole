@@ -22,10 +22,11 @@ function GameScene.extend(target)
 end
 
 function GameScene.create()
-     local gameScene = GameScene.extend(scene.create)
-     gameScene:init(conf)
-     return gameScene
+     local scene = GameScene.extend(scene.create())
+     scene:init(conf)
+     return scene
 end
+
 
 
 function GameScene:init(conf)
@@ -33,3 +34,4 @@ function GameScene:init(conf)
 end
 
 
+return GameScene

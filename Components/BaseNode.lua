@@ -1,6 +1,5 @@
 local BaseNode = class("BaseNode", function() return cc.Node:create() end)
 
-
 function BaseNode.extend(target)
    local t = tolua.getpeer(target)
    if not t then 
@@ -12,11 +11,8 @@ function BaseNode.extend(target)
 
 end
 
-
-
 function  BaseNode:init(conf)
      --注册场景各种事件
-
     self:registerScriptHandler(function(event)
   if event == "enter" then 
      self:onEnter()
