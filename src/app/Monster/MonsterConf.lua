@@ -8,33 +8,22 @@
 local MonsterConf  = class("MonsterConf")
 
 
-MonsterConf.MonsterType ={
-  Mouse   = 1,
-  Rabbit  = 2,
-  Tigger  = 3,
-  Hamster = 4,
-  Panda   = 5
-}
-
 MonsterConf.MonsterResource ={
-  [MonsterConf.MonsterType.Mouse]   = {"mouse_1.png","mouse_2.png"},
-  [MonsterConf.MonsterType.Rabbit]  = {"rabbit_1.png","rabbit_2.png"},
-  [MonsterConf.MonsterType.Tigger]  = {"tigger_1.png","tigger_2.png"},
-  [MonsterConf.MonsterType.Hamster] = {"hamster_1.png","hamster_2.png"},
-  [MonsterConf.MonsterType.Panda]   = {"panda_1.png","panda_2.png"}
+  [1]   = {"mouse_1.png","mouse_2.png"},
+  [2]   = {"rabbit_1.png","rabbit_2.png"},
+  [3]   = {"tigger_1.png","tigger_2.png"},
+  [4]   = {"hamster_1.png","hamster_2.png"},
+  [5]   = {"panda_1.png","panda_2.png"}
 }
 
-MonsterConf.MonsterState = {
-  normal  = 1 ,
-  fear    = 2 
-}
+
+
 MonsterConf.MonsterReward = {
-  [MonsterConf.MonsterType.Mouse]   = "buff1",
-  [MonsterConf.MonsterType.Rabbit]  = "buff2",
-  [MonsterConf.MonsterType.Tigger]  = 500,
-  [MonsterConf.MonsterType.Hamster] = 100,
-  [MonsterConf.MonsterType.Panda]   = -100
-
+  [1]   =  100,
+  [2]   = -100,
+  [3]   =  500,
+  [4]   = "+10s",
+  [5]   = "-10s",
 
 }
 

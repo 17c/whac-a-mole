@@ -16,9 +16,8 @@ end
 function LoadingControl:ctor(scene)
   self.scene = scene
   self.layer = cc.Layer:create()
-  resTool.addResource("LoadUI.plist","LoadUI.png")
+  -- resTool.addResource("LoadUI.plist","LoadUI.png")
 
-  
   self.ui = resTool.getUIFromJsonFile("LoadUI.ExportJson")
   self.layer:addChild(self.ui,1)
   self.scene:addChild(self.layer,0)
@@ -35,8 +34,10 @@ function LoadingControl:initUI()
 
     local rightPt  = self.ui:getChildByName("rightPt")
     local newBtn = rightPt:getChildByName("newBtn")
+    local instrBtn = Tool.getChildByName(self.ui,"instrBtn")
     print(tolua.type(newBtn))
     newBtn:addTouchEventListener(handler(self,self.onTouchNewBtn))
+    instrBtn:addTouchEventListener(handler(self,self.onTouchIntroduction))
 end
 
 function LoadingControl:onTouchNewBtn(_,touchType)
@@ -46,9 +47,33 @@ function LoadingControl:onTouchNewBtn(_,touchType)
       cc.Director:getInstance():pushScene(scene)
   end
 
-  end
+end
 
 
+function LoadingControl:onTouchIntroduction(_,touchType)
+   
+ if touchType == ccui.TouchEventType.ended then
+       local popUpLayer= cc.LayerColor:create(cc.c3b(0, 0, 0))
+        popUpLayer:setOpacity(180)
+        local helpBg = ccui.ImageView:create("help.png",ccui.TextureResType.localType)
+        helpBg:setScale(0.5)
+        helpBg:setPosition(VisibleRect:width()/2,VisibleRect:height()/2)
+        popUpLayer:addChild(helpBg)
+        self.scene:addChild(popUpLayer)
+        helpBg:setTouchEnabled(true)
+        helpBg:addTouchEventListener(function(_,eventType)
+           if eventType == ccui.TouchEventType.ended then
+              popUpLayer:removeFromParent()
+           end
+        end)
+ end
+
+
+
+
+
+
+end
 
 
 

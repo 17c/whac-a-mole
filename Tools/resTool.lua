@@ -8,8 +8,7 @@ end
 
 function resTool.getUIFromJsonFile(FilePath)
 local uiNode = ccs.GUIReader:getInstance():widgetFromJsonFile(FilePath)
-   return uiNode
-
+return uiNode
 
 end
 
