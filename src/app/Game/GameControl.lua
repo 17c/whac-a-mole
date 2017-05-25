@@ -217,20 +217,30 @@ function GameControl:initGameOverMaskLayer()
 
       self.scene:addChild(specialUpPanel,1000)
  
---   结算总成绩
+
       -- local  lbTotalScore = Tool.getChildByName(ReusltPanelUI,"lbTotalScore")
-      self.lbTotalScore:setString(self.totalScore)
-      self.lbTotalScore:setColor(cc.c3b(255,255,0))
+      -- self.lbTotalScore:setString(self.totalScore)
+      -- self.lbTotalScore:setColor(cc.c3b(255,255,0))
 
 --初始化 最大值
-      if not cc.UserDefault:getInstance():getIntegerForKey("MaxScore") 
-      or cc.UserDefault:getInstance():getIntegerForKey("MaxScore")  < self.totalScore then
+     print("test")
+     print(cc.UserDefault:getInstance():getIntegerForKey("MaxScore"))
+
+     if cc.UserDefault:getInstance():getIntegerForKey("MaxScore") and cc.UserDefault:getInstance():getIntegerForKey("MaxScore")  < self.totalScore then
+     
       cc.UserDefault:getInstance():setIntegerForKey("MaxScore", self.totalScore)
+      cc.UserDefault:getInstance():flush()
 -- 设置最大 分数 其实用atlas字体会更好的，就是我太懒了
+     end
+--结算最大分数     
        local  lbMaxScore = Tool.getChildByName(ReusltPanelUI,"lbMaxScore")
        lbMaxScore:setString(cc.UserDefault:getInstance():getIntegerForKey("MaxScore"))
        lbMaxScore:setColor(cc.c3b(255,0,0))
-      end
+--结算总分数
+       local totalScore  = Tool.getChildByName(ReusltPanelUI,"lbTotalScore")
+       totalScore:setString(self.totalScore)
+       totalScore:setColor(cc.c3b(255,0,0))
+
 
 --游戏结束 动画特效
       local imgGameOver  =Tool.createSprite("GamOver.png",false)
@@ -369,7 +379,7 @@ function GameControl:initAllEvent()
 
      emgr:addEventListener("costMoney",handler(self,self.onCostMoneyEventCallBack))
         ---添加buff
-      emgr:addEventListener("buff",handler(self,self.onBuffEventCallBack))
+      emgr:addEventListener("buff",handler(self,self.onBuffEventCallBack))  
      -- Tool.addCustomEventListener("+100",function()
      --  print("+100")
      --  print("self.scoreMultiple",self.scoreMultiple)

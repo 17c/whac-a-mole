@@ -8,6 +8,8 @@ cc.FileUtils:getInstance():addSearchPath("res/")
 --场景管理器
 cc.exports.emgr =  require("Tools/EventManager").create()
 
+
+
 local ShopLayer = require("Shop/ShopLayer")
 
 local resourcePlist = { 
@@ -28,6 +30,9 @@ local tipsList ={
 }
 
 function MainScene:startLoad()
+    AudioEngine:getInstance():preloadMusic("music/Synth.mp3")
+    AudioEngine:getInstance():preloadMusic("music/Jazz.mp3")
+
     self.count = 0 
     self.maxCount = #resourcePlist
 
@@ -64,7 +69,8 @@ end
 
 
 function MainScene:onCreate()
-    
+   
+
     local bg  =  cc.Sprite:create("bg.png")
     bg:setPosition(VisibleRect:width()/2,VisibleRect:height()/2)
     self:addChild(bg)

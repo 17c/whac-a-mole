@@ -4,7 +4,7 @@ local LoadingScene =  class("LoadingScene",
 function() 
  return scene.create()
 end)
-
+local MUSIC_FILE = "music/Synth.mp3"
 
 function LoadingScene.extend(target)
    local t = tolua.getpeer(target)
@@ -30,6 +30,7 @@ function LoadingScene.create(conf)
 end
 
 function LoadingScene:onEnter()
+   AudioEngine.playMusic(MUSIC_FILE, true)
  print("LoadingScene:onEnter")
 end
 

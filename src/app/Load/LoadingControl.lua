@@ -35,9 +35,11 @@ function LoadingControl:initUI()
     local rightPt  = self.ui:getChildByName("rightPt")
     local newBtn = rightPt:getChildByName("newBtn")
     local instrBtn = Tool.getChildByName(self.ui,"instrBtn")
+    local setBtn = Tool.getChildByName(self.ui,"setBtn")
     print(tolua.type(newBtn))
     newBtn:addTouchEventListener(handler(self,self.onTouchNewBtn))
     instrBtn:addTouchEventListener(handler(self,self.onTouchIntroduction))
+    setBtn:addTouchEventListener(handler(self, self.onTouchConfigCallBack))
 end
 
 function LoadingControl:onTouchNewBtn(_,touchType)
@@ -51,7 +53,6 @@ end
 
 
 function LoadingControl:onTouchIntroduction(_,touchType)
-   
  if touchType == ccui.TouchEventType.ended then
        local popUpLayer= cc.LayerColor:create(cc.c3b(0, 0, 0))
         popUpLayer:setOpacity(180)
@@ -67,12 +68,15 @@ function LoadingControl:onTouchIntroduction(_,touchType)
            end
         end)
  end
+end
 
 
 
-
-
-
+function LoadingControl:onTouchConfigCallBack(sender,touchType)
+ if touchType  ~= ccui.TouchEventType.ended then return end
+      local layer  = require("Music/MusicPanel").new()
+      layer:setPosition(VisibleRect:width()/2,VisibleRect:height()/2)
+      self.scene:addChild(layer)
 end
 
 

@@ -147,6 +147,13 @@ function tool.addTouchEventListener(node,callFunc)
        eventDispatcher:addEventListenerWithSceneGraphPriority(listener, node)  
 end
 
+
+
+function tool.registerScriptHandler(node,callFunc)
+   node:registerScriptHandler(callFunc)
+end
+
+
 return tool
 
 

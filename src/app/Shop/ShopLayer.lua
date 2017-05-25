@@ -94,7 +94,7 @@ function ShopLayer:onTouchEventCallBack(ref,touchType)
     emgr:dispatchEvent({"costMoney",nums= ref:getCostScore()})
     self.shopBox:setVisible(false)
     self.buff = math.random(1,6)
-    emgr:dispatchEvent({"buff",nums = self.buff})
+    emgr:dispatchEvent({"buff",nums = self.buff})   
 
     self.buyTips:setText(shopConfig.shopEffect[self.buff])
 
